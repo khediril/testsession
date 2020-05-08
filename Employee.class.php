@@ -9,6 +9,8 @@ class Employee
     private $last_name;
     private $gender;
     private $hire_date;
+    private $login;
+    private $password;
 
     /**
      * Get the value of emp_no
@@ -144,5 +146,67 @@ class Employee
             }
             die();
         }
+    }
+    public static function verifemplyee($login,$password)
+    {
+        $req = "select * from employees where login='$login' and passwd='$password'";
+        try {
+            $rep = Model::$pdo->query($req);
+
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Employee');
+            $emp=$rep->fetchAll();
+            if (count($emp)>0)
+              return true;
+            else
+              return false;
+           
+        } catch (PDOException $e) {
+            if (Conf::getDebug()) {
+                echo $e->getMessage(); // affiche un message d'erreur
+            } else {
+                echo 'Une erreur est survenue <a href=""> retour a la page d\'accueil </a>';
+            }
+            die();
+        }
+    }
+
+    /**
+     * Get the value of login
+     */ 
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set the value of login
+     *
+     * @return  self
+     */ 
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
     }
 }

@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
-
+<?php 
+   include_once('verifsession.inc.php')
+?>
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -12,9 +14,13 @@
 </head>
 
 <body>
-    <div class="row justify-content-center">
-        <h1>Liste des employés</h1>
-    </div>
+    <?php 
+      echo "Bienvenue ".$_SESSION['login']."...";
+    ?>
+    
+
+    <a href="logout.php">Se déconnecter</a>|
+    <a href="page1.php">aller à la page1</a>
     <?php include("lireEmployee.inc.php"); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
