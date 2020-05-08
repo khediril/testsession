@@ -9,6 +9,10 @@ class Conf
         'login' => 'root',
         'password' => 'root'
     );
+    static private $debug = true; 
+    static public function getDebug() {
+    	return self::$debug;
+    }
 
     static public function getLogin()
     {
